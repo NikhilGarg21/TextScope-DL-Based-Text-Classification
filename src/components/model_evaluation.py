@@ -97,11 +97,8 @@ class ModelEvaluation:
             best_model = self.get_best_model()
             if best_model is not None:
                 logging.info("Computing F1 Score for production model")
-                y_pred_probs = best_model.predict(x)
-                y_pred = np.argmax(
-                    y_pred_probs,
-                    axis=1,
-                )
+                y_pred = best_model.predict(x)
+
                 best_model_f1_score = f1_score(
                     y,
                     y_pred,
