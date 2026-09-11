@@ -156,3 +156,5 @@ cython_debug/
 
 artifact/
 key.txt
+logs/
+__pycache__/

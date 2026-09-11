@@ -1,0 +1,9 @@
+columns:
+  - label
+  - title
+  - content
+text_columns:
+  - title
+  - content
+label_column: label
+num_classes: 14

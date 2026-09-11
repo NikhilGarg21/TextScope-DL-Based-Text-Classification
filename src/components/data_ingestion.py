@@ -10,11 +10,9 @@ class DataIngestion:
     """
     Data Ingestion class to handle the data ingestion process.
     """
-
     def __init__(self, data_ingestion_config: DataIngestionConfig) -> None:
         """
         Initializes the DataIngestion class with the provided configuration.
-
         Args:
             data_ingestion_config (DataIngestionConfig): Configuration for data ingestion.
         """
@@ -27,7 +25,6 @@ class DataIngestion:
         """
         Exports train and test datasets from Hugging Face as pandas DataFrames
         and saves them to the specified file paths.
-
         Returns:
             None
         """
@@ -55,7 +52,6 @@ class DataIngestion:
     def initiate_data_ingestion(self) -> DataIngestionArtifact:
         """
         Initiates the data ingestion process and returns the artifact.
-
         Returns:
             DataIngestionArtifact: Artifact containing paths to the ingested train and test files.
         """

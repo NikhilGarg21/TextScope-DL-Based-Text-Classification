@@ -4,7 +4,6 @@ from datetime import date
 from dotenv import load_dotenv
 load_dotenv()
 
-
 HF_REPO_NAME = "TextScope"
 HF_USERNAME = "research07"
 HF_TOKEN = os.getenv("HF_TOKEN")
@@ -12,9 +11,9 @@ HF_TOKEN = os.getenv("HF_TOKEN")
 PIPELINE_NAME: str = "TextScope"
 ARTIFACT_DIR: str = "artifact"
 
-
 MODEL_FILE_NAME: str = "model.pkl"
-TARGET_COLUMN: str = "Response"
+TEXT_COLUMN = "text"
+TARGET_COLUMN = "label"
 
 CURRENT_YEAR = date.today().year
 PREPROCSSING_OBJECT_FILE_NAME: str = "preprocessing.pkl"
@@ -34,18 +33,14 @@ DATA_INGESTION_INGESTED_DIR: str = "ingested"
 
 
 # Data Validation related constants
-
 DATA_VALIDATION_DIR_NAME: str = "data_validation"
 DATA_VALIDATION_REPORT_FILE_NAME: str = "report.yaml"
 
-
 # Data Transformation related constants
-
 DATA_TRANSFORMATION_DIR_NAME: str = "data_transformation"
 DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR: str = "transformed"
-DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR: str = "transformed_object"
-
-
+MAX_WORDS = 30000
+MAX_LENGTH = 100
 # Model Trainer related constants
 
 MODEL_TRAINER_DIR_NAME: str = "model_trainer"
