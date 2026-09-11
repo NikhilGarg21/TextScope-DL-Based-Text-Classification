@@ -1,0 +1,46 @@
+stages:
+  data_ingestion:
+    cmd: python scripts/run_data_ingestion.py
+    deps:
+      - scripts/run_data_ingestion.py
+      - src/components/data_ingestion.py
+    outs:
+      - artifact/data_ingestion/ingested/train.csv
+      - artifact/data_ingestion/ingested/test.csv
+      - artifact/dvc_meta/data_ingestion.json:
+          cache: false
+
+  data_validation:
+    cmd: python scripts/run_data_validation.py
+    deps:
+      - scripts/run_data_validation.py
+      - src/components/data_validation.py
+      - artifact/dvc_meta/data_ingestion.json
+    outs:
+      - artifact/data_validation/report.yaml
+      - artifact/dvc_meta/data_validation.json:
+          cache: false
+
+  data_transformation:
+    cmd: python scripts/run_data_transformation.py
+    deps:
+      - scripts/run_data_transformation.py
+      - src/components/data_transformation.py
+      - artifact/dvc_meta/data_validation.json
+    outs:
+      - artifact/data_transformation/transformed/train.npy
+      - artifact/data_transformation/transformed/test.npy
+      - artifact/data_transformation/preprocessing.pkl
+      - artifact/dvc_meta/data_transformation.json:
+          cache: false
+
+  model_trainer:
+    cmd: python scripts/run_model_trainer.py
+    deps:
+      - scripts/run_model_trainer.py
+      - src/components/model_trainer.py
+      - artifact/dvc_meta/data_transformation.json
+    outs:
+      - artifact/model_trainer/trained_model/model.h5
+      - artifact/dvc_meta/model_trainer.json:
+          cache: false

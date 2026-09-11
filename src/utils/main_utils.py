@@ -6,7 +6,7 @@ import dill
 import yaml
 from src.exception import MyException
 from src.logger import logging
-
+from tensorflow.keras.models import load_model as keras_load_model # type: ignore
 def read_yaml_file(file_path: str) -> dict:
     try:
         with open(file_path, "rb") as yaml_file:
@@ -81,5 +81,29 @@ def save_object(file_path: str, obj: object) -> None:
 
         logging.info("Exited the save_object method of utils")
 
+    except Exception as e:
+        raise MyException(e, sys) from e
+
+def save_keras_model(file_path: str, model) -> None:
+    """
+    Save a Keras model using its native format.
+    file_path: str location of file to save (.h5 or SavedModel dir)
+    model: trained Keras model object
+    """
+    try:
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        model.save(file_path)
+    except Exception as e:
+        raise MyException(e, sys) from e
+
+
+def load_keras_model(file_path: str):
+    """
+    Load a Keras model saved via save_keras_model.
+    file_path: str location of file to load
+    return: Keras model object
+    """
+    try:
+        return keras_load_model(file_path)
     except Exception as e:
         raise MyException(e, sys) from e
