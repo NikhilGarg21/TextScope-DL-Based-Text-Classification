@@ -44,3 +44,24 @@ stages:
       - artifact/model_trainer/trained_model/model.h5
       - artifact/dvc_meta/model_trainer.json:
           cache: false
+  model_evaluation:
+    cmd: python scripts/run_model_evaluation.py
+    deps:
+      - scripts/run_model_evaluation.py
+      - src/components/model_evaluation.py
+      - artifact/dvc_meta/data_ingestion.json
+      - artifact/dvc_meta/model_trainer.json
+
+    outs:
+      - artifact/dvc_meta/model_evaluation.json:
+          cache: false
+
+  model_pusher:
+    cmd: python scripts/run_model_pusher.py
+    deps:
+      - scripts/run_model_pusher.py
+      - src/components/model_pusher.py
+      - artifact/dvc_meta/model_evaluation.json
+    outs:
+      - artifact/dvc_meta/model_pusher.json:
+          cache: false

@@ -66,7 +66,7 @@ stages:
     outs:
     - path: artifact/data_transformation/preprocessing.pkl
       hash: md5
-      md5: ebf6125cc4d8b8859ae82a20708d193b
+      md5: 6b0276e1448deccb9615a5845d9cf497
       size: 34485407
     - path: artifact/data_transformation/transformed/test.npy
       hash: md5
@@ -104,3 +104,47 @@ stages:
       hash: md5
       md5: 25e73f8d7462e2188dcb72086b61d722
       size: 47419776
+  model_evaluation:
+    cmd: python scripts/run_model_evaluation.py
+    deps:
+    - path: artifact/dvc_meta/data_ingestion.json
+      hash: md5
+      md5: 50a3d8e2c1d12359a730a62250d39333
+      size: 147
+    - path: artifact/dvc_meta/model_trainer.json
+      hash: md5
+      md5: 74ec79bdda8cb7b78ca1a82a5c360fb3
+      size: 271
+    - path: scripts/run_model_evaluation.py
+      hash: md5
+      md5: 2828433519d4a003037fef9c2b99771a
+      size: 1953
+    - path: src/components/model_evaluation.py
+      hash: md5
+      md5: f7816a93c9ffd32e56431f9c07578c24
+      size: 6081
+    outs:
+    - path: artifact/dvc_meta/model_evaluation.json
+      hash: md5
+      md5: 5286d3c60925857a3470a9c688826330
+      size: 246
+  model_pusher:
+    cmd: python scripts/run_model_pusher.py
+    deps:
+    - path: artifact/dvc_meta/model_evaluation.json
+      hash: md5
+      md5: 5286d3c60925857a3470a9c688826330
+      size: 246
+    - path: scripts/run_model_pusher.py
+      hash: md5
+      md5: 2fe2f54b01b6e5650d7846f1f504615c
+      size: 1048
+    - path: src/components/model_pusher.py
+      hash: md5
+      md5: 9d09cf2aff9a3ce41419bfb8a6c764e2
+      size: 2044
+    outs:
+    - path: artifact/dvc_meta/model_pusher.json
+      hash: md5
+      md5: 9dbd609c0d9ac279efc666404a985e52
+      size: 131

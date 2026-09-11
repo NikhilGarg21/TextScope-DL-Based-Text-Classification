@@ -47,3 +47,17 @@ class ModelTrainerConfig:
     validation_split: float = MODEL_TRAINER_VALIDATION_SPLIT
     early_stopping_patience: int = MODEL_TRAINER_EARLY_STOPPING_PATIENCE
     early_stopping_monitor: str = MODEL_TRAINER_EARLY_STOPPING_MONITOR
+
+@dataclass
+class ModelEvaluationConfig:
+    changed_threshold_score: float = MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE
+    hf_repo_id: str = HF_REPO_ID
+    hf_model_path: str = MODEL_FILE_NAME
+    hf_preprocessing_path: str = PREPROCSSING_OBJECT_FILE_NAME
+
+@dataclass
+class ModelPusherConfig:
+    hf_repo_id: str = HF_REPO_ID
+    hf_model_path: str = MODEL_FILE_NAME
+    hf_preprocessing_path: str = PREPROCSSING_OBJECT_FILE_NAME
+    

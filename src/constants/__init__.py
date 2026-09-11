@@ -8,22 +8,26 @@ HF_REPO_NAME = "TextScope"
 HF_USERNAME = "research07"
 HF_TOKEN = os.getenv("HF_TOKEN")
 
+HF_REPO_ID = f"{HF_USERNAME}/{HF_REPO_NAME}"
+
 PIPELINE_NAME: str = "TextScope"
 ARTIFACT_DIR: str = "artifact"
 
 MODEL_FILE_NAME: str = "model.h5"
-TEXT_COLUMN = "text"
-TARGET_COLUMN = "label"
+PREPROCSSING_OBJECT_FILE_NAME: str = "preprocessing.pkl"
+
+TEXT_COLUMN: str = "text"
+TARGET_COLUMN: str = "label"
 
 CURRENT_YEAR = date.today().year
-PREPROCSSING_OBJECT_FILE_NAME: str = "preprocessing.pkl"
 
 TRAIN_FILE_NAME: str = "train.csv"
 TEST_FILE_NAME: str = "test.csv"
 
+
 SCHEMA_FILE_PATH = os.path.join(
     "config",
-    "schema.yaml"
+    "schema.yaml",
 )
 
 
@@ -36,11 +40,13 @@ DATA_INGESTION_INGESTED_DIR: str = "ingested"
 DATA_VALIDATION_DIR_NAME: str = "data_validation"
 DATA_VALIDATION_REPORT_FILE_NAME: str = "report.yaml"
 
+
 # Data Transformation related constants
 DATA_TRANSFORMATION_DIR_NAME: str = "data_transformation"
 DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR: str = "transformed"
-MAX_WORDS = 30000
-MAX_LENGTH = 100
+MAX_WORDS: int = 30000
+MAX_LENGTH: int = 100
+
 
 # Model Trainer related constants
 MODEL_TRAINER_DIR_NAME: str = "model_trainer"
@@ -61,9 +67,10 @@ MODEL_TRAINER_EARLY_STOPPING_PATIENCE: int = 2
 MODEL_TRAINER_EARLY_STOPPING_MONITOR: str = "val_loss"
 
 
+# Model Evaluation related constants
+MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE: float = 0.005
 
 
 # Application constants
-
-APP_HOST = "0.0.0.0"
-APP_PORT = 5000
+APP_HOST: str = "0.0.0.0"
+APP_PORT: int = 5000
